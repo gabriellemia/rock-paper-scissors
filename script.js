@@ -1,43 +1,53 @@
+const choices = ['rock', 'paper', 'scissors'];
 function getComputerChoice() {
-
-    let choices = ['rock', 'paper', 'scissors'];
-    return choices[~~(Math.random() * choices.length)];
-
+    return choices[Math.floor(Math.random()*choices.length)];
 }
 
-let playerScore = 0
-let computerScore = 0
+let playerScore = 0;
+let computerScore = 0;
 let playerSelection;
 let computerSelection;
 let result;
 
-
 function playRound(playerSelection, computerSelection) {
-
-    computerSelection = getComputerChoice().toLowerCase();
+    computerSelection = computerSelection.toLowerCase();
     playerSelection = playerSelection.toLowerCase();
     result = "";
-
     
     if ((playerSelection == 'rock' && computerSelection == 'scissors') ||
         (playerSelection == 'scissors' && computerSelection == 'paper') ||
         (playerSelection == 'paper' && computerSelection =='rock')) {
 
-            playerScore +=1
-            result = ("You win!!" + playerSelection + " beats " + computerSelection);
+            playerScore += 1;
+            return result = ("You win!!" + playerSelection + " beats " + computerSelection);
         
     }
 
     else if (playerSelection === computerSelection) {
 
-            result = ("It's a tie!!  Try again");
+            return result = ("It's a tie!!  Try again");
     }
     
     else {
-        result = ("You lose!! " + computerSelection + " beats " + playerSelection);
+            computerScore +=1;
+            return result = ("You lose!! " + computerSelection + " beats " + playerSelection);
     }
-
 }
-playerSelection = "rock";
-computerSelection = getComputerChoice();
-console.log(playRound(playerSelection, computerSelection));
+    playerSelection = prompt ("Your move! Rock, Paper or Scissors?");
+    computerSelection = getComputerChoice();
+    console.log(playRound(playerSelection, computerSelection));
+
+function game() {
+    for (let i = 0; i <= 5; i++) {
+
+    if (playerScore > computerScore)
+        return result = ("You won the game, well done")
+
+    else if (computerScore > playerScore)
+        return result = ("You lost, better luck next time!")
+
+    else 
+        playRound();
+
+    }
+}
