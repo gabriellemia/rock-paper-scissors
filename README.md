@@ -1,0 +1,1 @@
+Create a rock paper scissors game, playable in the console against computer. Should have a points counter displayed. Should alert win, lose or tie after 3 rounds.
