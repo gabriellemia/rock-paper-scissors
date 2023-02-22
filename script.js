@@ -12,10 +12,9 @@ function getComputerChoice() {
 
 function playRound() {
 
-
     let playerSelection = prompt("Your move! Rock, Paper or Scissors?").toLowerCase();
     let computerSelection = getComputerChoice();
-    
+
     if ((playerSelection == 'rock' && computerSelection == 'scissors') ||
         (playerSelection == 'scissors' && computerSelection == 'paper') ||
         (playerSelection == 'paper' && computerSelection =='rock')) {
@@ -25,15 +24,22 @@ function playRound() {
         
     }
 
+    else if ((computerSelection == 'rock' && playerSelection == 'scissors') ||
+            (computerSelection == 'scissors' && playerSelection == 'paper') ||
+            (computerSelection == 'paper' && playerSelection =='rock')) {
+
+            console.log("You lose!! " + computerSelection + " beats " + playerSelection);
+            computerScore +=1;
+    }
+
     else if (playerSelection === computerSelection) {
             
             console.log("It's a tie!!  Try again");
     }
     
     else {
+          console.log("invalid selection, please try again"); 
             
-            console.log("You lose!! " + computerSelection + " beats " + playerSelection);
-            computerScore +=1;
     }
 }
 
@@ -44,6 +50,10 @@ function game() {
     
     if (playerScore > computerScore)
         console.log("You won the game, well done!");
+
+    else if (playerScore === computerScore)
+        console.log("It's a tied game! Don't settle for it, try again!");
+        
     else
         console.log("You lost, better luck next time!");
        
