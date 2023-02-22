@@ -12,8 +12,18 @@ function getComputerChoice() {
 
 function playRound() {
 
-    let playerSelection = prompt("Your move! Rock, Paper or Scissors?").toLowerCase();
+    let playerSelection= '';
     let computerSelection = getComputerChoice();
+
+    let validFound = false;
+    while (!validFound){
+        playerSelection = prompt("Your move! Rock, Paper or Scissors?").toLowerCase();
+        if (choices.includes(playerSelection)){
+            validFound = true;
+        }
+        else
+            console.log("invalid selection, please try again"); 
+    }
 
     if ((playerSelection == 'rock' && computerSelection == 'scissors') ||
         (playerSelection == 'scissors' && computerSelection == 'paper') ||
@@ -35,12 +45,9 @@ function playRound() {
     else if (playerSelection === computerSelection) {
             
             console.log("It's a tie!!  Try again");
+            playRound();
     }
     
-    else {
-          console.log("invalid selection, please try again"); 
-            
-    }
 }
 
 function game() {
@@ -51,9 +58,6 @@ function game() {
     if (playerScore > computerScore)
         console.log("You won the game, well done!");
 
-    else if (playerScore === computerScore)
-        console.log("It's a tied game! Don't settle for it, try again!");
-        
     else
         console.log("You lost, better luck next time!");
        
