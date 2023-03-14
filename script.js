@@ -15,7 +15,7 @@ computerScoreDis.textContent = computerScore;
 playerScoreDis.textContent = playerScore;
 
 choices.forEach(choice => choice.addEventListener('click', (e) => {
-    playerSelection = e.target.innerText.toLowerCase();
+    playerSelection = e.target.id;
     playerChoiceDis.textContent = playerSelection;
     getComputerChoice();
     playRound();
