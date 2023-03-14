@@ -1,66 +1,102 @@
+const computerChoiceDis = document.querySelector("#computerChoice");
+const playerChoiceDis = document.querySelector("#playerChoice");
+const resultDis = document.querySelector("#result");
+const choices = document.querySelectorAll('.choices');
+const computerScoreDis = document.querySelector("#compScore");
+const playerScoreDis = document.querySelector("#playScore");
+const gameResultDis = document.querySelector("#gameResult");
+const newGame = document.querySelector("#newGame");
 let playerScore = 0;
 let computerScore = 0;
-let choices = ['rock', 'paper', 'scissors'];
+let playerSelection;
+let computerSelection;
 
-game();
+computerScoreDis.textContent = computerScore;
+playerScoreDis.textContent = playerScore;
+
+choices.forEach(choice => choice.addEventListener('click', (e) => {
+    playerSelection = e.target.innerText.toLowerCase();
+    playerChoiceDis.textContent = playerSelection;
+    getComputerChoice();
+    playRound();
+    endGame();
+}))
+
+newGame.addEventListener('click', resetGame);
+    
 
 function getComputerChoice() {
+    const randomChoice = Math.floor(Math.random()*choices.length);
     
-    return choices[Math.floor(Math.random()*choices.length)];
+    if (randomChoice === 0) {
+        computerSelection = 'rock';
+    }
+    if (randomChoice === 1) {
+        computerSelection = 'paper';
+    }
+    if (randomChoice === 2) {
+        computerSelection = 'scissors';
+    }
+    computerChoiceDis.textContent = computerSelection;
 }
 
 
 function playRound() {
-
-    let playerSelection= '';
-    let computerSelection = getComputerChoice();
-
-    let validFound = false;
-    while (!validFound){
-        playerSelection = prompt("Your move! Rock, Paper or Scissors?").toLowerCase();
-        if (choices.includes(playerSelection)){
-            validFound = true;
-        }
-        else
-            console.log("invalid selection, please try again"); 
-    }
-
+        
     if ((playerSelection == 'rock' && computerSelection == 'scissors') ||
         (playerSelection == 'scissors' && computerSelection == 'paper') ||
         (playerSelection == 'paper' && computerSelection =='rock')) {
-
-            console.log("You win!!" + playerSelection + " beats " + computerSelection);
+    
+            result = "You win!! " + playerSelection + " beats " + computerSelection;
             playerScore += 1;
-        
+            playerScoreDis.textContent = playerScore;     
     }
-
     else if ((computerSelection == 'rock' && playerSelection == 'scissors') ||
             (computerSelection == 'scissors' && playerSelection == 'paper') ||
             (computerSelection == 'paper' && playerSelection =='rock')) {
-
-            console.log("You lose!! " + computerSelection + " beats " + playerSelection);
+    
+            result = "You lose!! " + computerSelection + " beats " + playerSelection;
             computerScore +=1;
+            computerScoreDis.textContent = computerScore;
     }
-
     else if (playerSelection === computerSelection) {
-            
-            console.log("It's a tie!!  Try again");
-            playRound();
+                
+            result = "It's a tie!!  Try again";
+    }
+    resultDis.textContent = result;
+    
+}
+    
+function endGame() { 
+    if (playerScore === 5 || computerScore === 5) { // Has the game finished?
+        choices.forEach(button => button.disabled = true);
+    
+        gameResultDis.textContent = (playerScore>computerScore) ? 
+        "You won the game!! Congratulations, you outwitted the Computer!" : 
+        "You lost the game! Oh dear, bested by a machine!";
     }
     
 }
 
-function game() {
-    for (let i = 0; i < 5; i++) {
-        playRound();
-    }
-    
-    if (playerScore > computerScore)
-        console.log("You won the game, well done!");
+function resetGame() {
+    playerScore = 0;
+    computerScore = 0;
 
-    else
-        console.log("You lost, better luck next time!");
+    computerScoreDis.textContent = computerScore;
+    playerScoreDis.textContent = playerScore;
+    playerChoiceDis.textContent = "";
+    computerChoiceDis.textContent = "";
+    gameResultDis.textContent = "";
+    resultDis.textContent = "";
+    choices.forEach(button => button.disabled = false);
+}
+
+
+
+
+   
+
        
-}
+
 
 
