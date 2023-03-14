@@ -1,0 +1,57 @@
+header {
+    color: rgb(66, 136, 194);
+    font-size: xx-large;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+}
+
+body {
+
+    background-image: url(background2.jpg);
+    color: black;
+    text-align: center;
+}
+.choices:hover {
+    background-color: rgb(66, 136, 194);
+    transform: scale(1.1);
+
+}
+.choices {
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 50px;
+    font-size: 30px;
+    border-radius: 15px;
+    border: 5px solid rgb(66, 136, 194);
+}
+#newGame {
+    background-color: yellowgreen;
+    color:black;
+    text-align: center;
+    padding: 10px;
+    border: 2px solid rgb(252, 249, 249);
+}
+#newGame:hover {
+    background-color:rgb(233, 138, 14);
+    transform: scale(1.1);
+}
+#computerChoice {
+    color: rgb(102, 3, 214);
+}
+#playerChoice {
+    color: rgb(34, 153, 5);
+}
+#result {
+    color:rgb(190, 6, 113);
+}
+#compScore {
+    color: red;
+}
+#playScore {
+    color: red;
+}
+#gameResult {
+    color: rgb(247, 45, 247);
+}
